@@ -20,9 +20,11 @@ class NonAdminVisitorCVTest(unittest.TestCase):
         self.assertIn('Marcos Manning', header_text)
 
         #They notice his contact details 
-        self.fail('Finish the test!')  
+        contact = self.browser.find_element_by_id('contact_details').text
+        self.assertIn('Contact Details', contact)
 
         #They take a look at his education history 
+        self.fail('Finish the test!')  
 
         #They then take a look at his tech skills
 
