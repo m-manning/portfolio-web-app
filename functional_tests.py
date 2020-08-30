@@ -1,7 +1,7 @@
 from selenium import webdriver
 import unittest
 
-class NonAdminVisitorCVTest(unittest.TestCase):  
+class CVTest(unittest.TestCase):  
 
     def setUp(self):  
         self.browser = webdriver.Firefox()
@@ -20,8 +20,13 @@ class NonAdminVisitorCVTest(unittest.TestCase):
         self.assertIn('Marcos Manning', header_text)
 
         #They notice his contact details 
-        contact = self.browser.find_element_by_id('contact_details').text
-        self.assertIn('Contact Details', contact)
+        contactTitle = self.browser.find_element_by_id('contact_details').text
+        self.assertIn('Contact Details', contactTitle)
+        #all the details are correct
+        contact = self.browser.find_element_by_class_name('contact').text
+        self.assertIn('295 Champs Sur Marne\nBradley Stoke\nBristol, BS32 9BZ', contact) #make sure each address line is a new line
+        self.assertIn('07865155338', contact)
+        self.assertIn('marcosmanning@outlook.com', contact)
 
         #They take a look at his education history 
         self.fail('Finish the test!')  
