@@ -76,7 +76,7 @@ class CVTest(unittest.TestCase):
         self.assertIn('Work Experience', workTitle)
 
         #I edit the work experience history
-        self.edit_cv('id_work_exp', 'Tesco')
+        self.edit_cv('id_work_experience', 'Tesco')
         
         #verify all the details are correct
         work = self.browser.find_element_by_class_name('work_details').text

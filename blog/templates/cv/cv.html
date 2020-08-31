@@ -25,6 +25,17 @@
     <p>{{ my_cv.tech_skills|linebreaksbr }}</p>
 </div>
 
+<div class=work_details>
+<h2 id=work>Work Experience</h2>
+    <p>{{ my_cv.work_experience|linebreaksbr }}</p>
+</div>
+
+<div class=additional_skills>
+<h2 id=additional>Additional Skills</h2>
+    <p>{{ my_cv.additional_skills|linebreaksbr }}</p>
+</div>
+        
+
 {% endfor %}
 
 {% endblock %}

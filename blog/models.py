@@ -20,3 +20,5 @@ class Post(models.Model):
 class CV(models.Model):
     education = models.TextField(default='', blank=True)
     tech_skills = models.TextField(default='', blank=True)
+    work_experience = models.TextField(default='', blank=True)
+    additional_skills = models.TextField(default='', blank=True)

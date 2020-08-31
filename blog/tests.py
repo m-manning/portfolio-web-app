@@ -9,7 +9,7 @@ class CVPageTest(TestCase):
 
     def test_cv_shows_all_items(self):
         CV.objects.create(education='University of Birmingham', tech_skills='Python', 
-        work_exp='Tesco', additional_skills='Portuguese')
+        work_experience='Tesco', additional_skills='Portuguese')
 
         response = self.client.get('/cv')
 
@@ -28,7 +28,7 @@ class CvModelTest(TestCase):
         cv = CV()
         cv.education = 'University of Birmingham'
         cv.tech_skills = 'Python'
-        cv.work_exp = 'Tesco'
+        cv.work_experience = 'Tesco'
         cv.additional_skills = 'Portuguese'
         cv.save()
 
@@ -39,7 +39,7 @@ class CvModelTest(TestCase):
 
         self.assertEqual(complete_cv.education, 'University of Birmingham')
         self.assertEqual(complete_cv.tech_skills, 'Python')
-        self.assertEqual(cv.work_exp, 'Tesco')
+        self.assertEqual(cv.work_experience, 'Tesco')
         self.assertEqual(cv.additional_skills, 'Portuguese')
 
 
