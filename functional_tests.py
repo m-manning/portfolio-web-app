@@ -12,7 +12,7 @@ class CVTest(unittest.TestCase):
         self.browser.quit()
 
     def site_login(self):
-        self.browser.get('http://localhost:8000/accounts/login')
+        self.browser.get('http://127.0.0.1:8000/accounts/login')
         self.browser.find_element_by_id('id_username').send_keys("YOUR_USERNAME")
         self.browser.find_element_by_id('id_password').send_keys("YOUR_PASSWORD")
         self.browser.find_element_by_id('submit').click()
@@ -33,7 +33,7 @@ class CVTest(unittest.TestCase):
         time.sleep(1)
 
         #I take a look at my CV
-        self.browser.get('http://localhost:8000/cv')
+        self.browser.get('http://127.0.0.1:8000/cv')
 
         #The header and page title have my name
         self.assertIn('Marcos Manning', self.browser.title)

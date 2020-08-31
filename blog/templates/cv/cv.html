@@ -17,22 +17,22 @@
 
 <div class=education>
 <h2 id=education_details>Education</h2>
-    <p>{{ my_cv.education|linebreaksbr }}</p>
+    <p>{{ my_cv.education|safe }}</p>
 </div>
 
 <div class=tech>
 <h2 id=tech_details>Tech Skills</h2>
-    <p>{{ my_cv.tech_skills|linebreaksbr }}</p>
+    <p>{{ my_cv.tech_skills|safe }}</p>
 </div>
 
 <div class=work_details>
 <h2 id=work>Work Experience</h2>
-    <p>{{ my_cv.work_experience|linebreaksbr }}</p>
+    <p>{{ my_cv.work_experience|safe }}</p>
 </div>
 
 <div class=additional_skills>
 <h2 id=additional>Additional Skills</h2>
-    <p>{{ my_cv.additional_skills|linebreaksbr }}</p>
+    <p>{{ my_cv.additional_skills|safe }}</p>
 </div>
         
 
