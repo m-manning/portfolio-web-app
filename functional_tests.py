@@ -65,10 +65,10 @@ class CVTest(unittest.TestCase):
         self.assertIn('Tech Skills', techTitle)
 
         #I edit the tech skills history 
-        self.edit_cv('id_tech', 'Python')
+        self.edit_cv('id_tech_skills', 'Python')
 
         #verify all the updated details are correct
-        tech = self.browser.find_elements_by_class_name('tech_skills')
+        tech = self.browser.find_element_by_class_name('tech').text
         self.assertIn('Python', tech)
 
         #I take a look through my work experience

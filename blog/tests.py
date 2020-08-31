@@ -15,6 +15,10 @@ class CVPageTest(TestCase):
         self.assertIn('University of Birmingham', response.content.decode())
         self.assertIn('Python', response.content.decode())
 
+    def test_only_saves_items_when_necessary(self):
+        self.client.get('/cv')
+        self.assertEqual(CV.objects.count(), 0)
+
 class CvModelTest(TestCase):
 
     def test_adding_and_retrieving(self):
@@ -29,6 +33,6 @@ class CvModelTest(TestCase):
         complete_cv = saved_cv[0]
 
         self.assertEqual(complete_cv.education, 'University of Birmingham')
-        self.assertEqual(complete_cv.tech_skilss, 'Python')
+        self.assertEqual(complete_cv.tech_skills, 'Python')
 
 
