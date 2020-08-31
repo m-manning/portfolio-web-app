@@ -27,7 +27,7 @@ class CVTest(unittest.TestCase):
         time.sleep(1)
 
 
-    def test_admin_can_view_and_edit_cv(self): #needs admin permissions
+    def test_admin_can_view_and_edit_cv(self): #NEEDS ADMIN LOGIN + make sure 1 empty cv model exists
 
         self.site_login()
         time.sleep(1)
@@ -72,9 +72,28 @@ class CVTest(unittest.TestCase):
         self.assertIn('Python', tech)
 
         #I take a look through my work experience
-        self.fail('Finish the test!')  
+        workTitle = self.browser.find_element_by_id('work').text
+        self.assertIn('Work Experience', workTitle)
 
-        #Finally I check my addtional skills
+        #I edit the work experience history
+        self.edit_cv('id_work_exp', 'Tesco')
+        
+        #verify all the details are correct
+        work = self.browser.find_element_by_class_name('work_details').text
+        self.assertIn('Tesco', work)
+
+        #Finally I check my additional skills
+        additionalTitle = self.browser.find_element_by_id('additional').text
+        self.assertIn('Additional Skills', additionalTitle)
+        
+        #I edit the skills
+        self.edit_cv('id_additional_skills', 'Portuguese')
+
+        #verify all the details are correct
+        additional = self.browser.find_element_by_class_name('additional_skills').text
+        self.assertIn('Portuguese', additional)
+
+        #Make sure to remove data after test run
 
 
 if __name__ == '__main__':  
