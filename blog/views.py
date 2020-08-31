@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from .models import Post
-from .forms import PostForm
+from .models import Post, CV
+from .forms import PostForm, CvForm
 
 # Create your views here.
 
@@ -63,4 +63,19 @@ def post_remove(request, pk):
     return redirect('post_list')
 
 def cv(request):
-    return render(request, 'cv/cv.html')
+    myCV = CV.objects.all()
+    return render(request, 'cv/cv.html', {'CV': myCV})
+
+@login_required
+def cv_edit(request, pk):
+    cv = get_object_or_404(CV, pk=pk)
+    if request.method == "POST":
+        form = CvForm(request.POST, instance=cv)
+        if form.is_valid():
+            cv = form.save(commit=False)
+            cv.author = request.user
+            cv.save()
+            return redirect('cv')
+    else:
+        form = CvForm(instance=cv)
+    return render(request, 'cv/cv_edit.html', {'form': form})

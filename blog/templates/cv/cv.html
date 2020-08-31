@@ -1,13 +1,26 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog/cv_base.html' %}
 
 {% block content%}
 
+{% for my_cv in CV %}
+
+{% if user.is_authenticated %}
+<a id=edit_cv href="{% url 'cv_edit' pk=my_cv.pk %}"><span class="glyphicon glyphicon-edit"></span></a>
+{% endif %}
+
 <div class = contact>
-    <h2 id=contact_details> Contact Details</h2>
+    <h2 id=contact_details>Contact Details</h2>
     <p>295 Champs Sur Marne <br> Bradley Stoke <br> Bristol, BS32 9BZ</p>
     <p>07865155338</p>
     <a href = "mailto: marcosmanning@outlook.com">marcosmanning@outlook.com</a>
 </div>
 
+<div class=education>
+<h2 id=education_details>Education</h2>
+    <p>{{ my_cv.education|linebreaksbr }}</p>
+</div>
+
+{% endfor %}
 
 {% endblock %}
+
