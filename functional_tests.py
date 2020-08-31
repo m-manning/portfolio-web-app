@@ -16,6 +16,16 @@ class CVTest(unittest.TestCase):
         self.browser.find_element_by_id('id_username').send_keys("YOUR_USERNAME")
         self.browser.find_element_by_id('id_password').send_keys("YOUR_PASSWORD")
         self.browser.find_element_by_id('submit').click()
+    
+    def edit_cv(self, id, text):
+        editCV = self.browser.find_element_by_id('edit_cv')
+        editCV.click()
+        time.sleep(1)
+        input_education = self.browser.find_element_by_id(id)
+        input_education.send_keys(text)
+        self.browser.find_element_by_id('submit').click()
+        time.sleep(1)
+
 
     def test_admin_can_view_and_edit_cv(self): #needs admin permissions
 
@@ -44,23 +54,25 @@ class CVTest(unittest.TestCase):
         self.assertIn('Education', educationTitle)
 
         #I edit the education history 
-        editCV = self.browser.find_element_by_id('edit_cv')
-        editCV.click()
-        time.sleep(1)
-        input_education = self.browser.find_element_by_id('id_education')
-        input_education.send_keys('University of Birmingham')
-        self.browser.find_element_by_id('submit').click()
-        time.sleep(1)
+        self.edit_cv('id_education', 'University of Birmingham')
 
         #verify all the updated details are correct
         education = self.browser.find_element_by_class_name('education').text
         self.assertIn('University of Birmingham', education)
 
-        self.fail('Finish the test!')  
-
         #I take a look through my tech skills
+        techTitle = self.browser.find_element_by_id('tech_details').text
+        self.assertIn('Tech Skills', techTitle)
+
+        #I edit the tech skills history 
+        self.edit_cv('id_tech', 'Python')
+
+        #verify all the updated details are correct
+        tech = self.browser.find_elements_by_class_name('tech_skills')
+        self.assertIn('Python', tech)
 
         #I take a look through my work experience
+        self.fail('Finish the test!')  
 
         #Finally I check my addtional skills
 
